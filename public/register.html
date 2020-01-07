@@ -163,7 +163,7 @@ s.parentNode.insertBefore(hm, s);
 
     <div class="login-res-bg">
         <div class="for-res-box">
-            <form action="#" method="post" id="form1">
+            <form method="post" id="form1">
                 <div class="login-title">Register</div>
                 <div class="login-input">
                     <div class="login-icon"><img src="templates/default/images/login-tel.png" alt=""></div>
@@ -184,13 +184,27 @@ s.parentNode.insertBefore(hm, s);
                     <div class="login-icon"><img src="templates/default/images/password.png" alt=""></div>
                     <input type="password" placeholder="Re-type Password" name="repassword" id="pwdd">
                 </div>
-                <button class="login-btn" type="button" id="tijiao">Submit</button>
+                <button class="login-btn" id="submit" onclick="submitform()">Submit</button>
                 <div class="for-res-warning">
                     <a href="login.html">Already had an account? Click here to login.</a>
                 </div>
             </form>
         </div>
     </div>
+
+<script>
+  function submitform(){
+    var formData = JSON.stringify($("#form1").serializeArray());
+    $.ajax({
+      type: "POST",
+      url: "/register.html",
+      data: formData,
+      success: function(){},
+      dataType: "json",
+      contentType : "application/json"
+    });
+  }
+</script>
 
 <script>
 	$('.open-ss-f').click(function () {
@@ -242,10 +256,11 @@ s.parentNode.insertBefore(hm, s);
     }
 </script>
 
+<!--
 <script type="text/javascript">
         var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1275773292'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s96.cnzz.com/z_stat.php%3Fid%3D1275773292%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
 </script>
-
+-->
 <!--<script id="qd285216726916e2a21ae212feb81004d454f6148550" src="https://wp.qiye.qq.com/qidian/2852167269/16e2a21ae212feb81004d454f6148550" charset="utf-8" async defer></script>-->
 
 <!--<script id="qd2852167269b00f47cca36be24e3563ff930aa359b1" src="https://wp.qiye.qq.com/qidian/2852167269/b00f47cca36be24e3563ff930aa359b1" charset="utf-8" async defer></script>-->
@@ -260,8 +275,9 @@ s.parentNode.insertBefore(hm, s);
 <!--<script id="qd28521672693a0e6feb4451a7db4cc9371f7dfa21b0" src="https://wp.qiye.qq.com/qidian/2852167269/3a0e6feb4451a7db4cc9371f7dfa21b0" charset="utf-8" async defer></script>-->
 
 
-<script id="qd28521672693125fdeb261c8c1594add6f24d57b6fe" src="https://wp.qiye.qq.com/qidian/2852167269/3125fdeb261c8c1594add6f24d57b6fe" charset="utf-8" async defer></script><script src="templates/default/layer/layer.js"></script>
-<script>
+<!--<script id="qd28521672693125fdeb261c8c1594add6f24d57b6fe" src="https://wp.qiye.qq.com/qidian/2852167269/3125fdeb261c8c1594add6f24d57b6fe" charset="utf-8" async defer></script><script src="templates/default/layer/layer.js"></script>-->
+<!--<script>
+
 	$("#tijiao").click(function(){
 		var phone=$("#phone").val();
 		var pwd=$("#pwd").val();
@@ -269,39 +285,36 @@ s.parentNode.insertBefore(hm, s);
 		var ycode=$("#ycode").val();
 		var reg = /(^1([34578][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$)/;
 		if(phone==''){
-			layer.msg('手机号码不能为空',{icon:5});
+			layer.msg('Account name cannot be empty',{icon:5});
 			$("#phone").focus();
 			return false;
-		}else if(!reg.test(phone)){
-			layer.msg('手机号码格式不匹配！',{icon:5});
-			$("#phone").focus();
-            return false;
-        }
+		}
 		/*if(ycode==''){
 			layer.msg('验证码不能为空',{icon:5});
 			$("#ycode").focus();
 			return false;
 		}*/
 		if(pwd==''){
-			layer.msg('密码不能为空',{icon:5});
+			layer.msg('Password cannot be empty',{icon:5});
 			$("#pwd").focus();
 			return false;
 		}
-		if(pwd.length<6){
-			layer.msg('密码长度不能小于6个',{icon:5});
+		if(pwd.length<8){
+			layer.msg('Password should have at least 8 characters',{icon:5});
 			$("#pwd").focus();
 			return false;
 		}
 		if(pwdd==''){
-			layer.msg('密码不能为空',{icon:5});
+			layer.msg('Password cannot be empty',{icon:5});
 			$("#pwdd").focus();
 			return false;
 		}
 		if(pwd!=pwdd){
-			layer.msg('两次密码不一致,请确认',{icon:5});
+			layer.msg('Passwords not matched',{icon:5});
 			$("#pwdd").focus();
 			return false;
 		}
+    /*
 		$.ajax({
 		  type:"POST",
 		  url:"/index.php?a=ajax&mod=doing&act=reg",
@@ -326,8 +339,10 @@ s.parentNode.insertBefore(hm, s);
 			layer.tips("信息提交失败,请点击重试");
 		  }
 		})
+    */
+    document.getElementById("form1").submit();
 	})
-
+/*
     var countdown=60;
     function sendemail(){
         var obj = $("#btn");
@@ -345,6 +360,7 @@ s.parentNode.insertBefore(hm, s);
 			$("#phone").focus();
 			return false;
 		}
+
 		$.ajax({
 		  type:"POST",
 		  url:"/index.php?a=ajax&mod=doing&act=checktel",
@@ -411,8 +427,8 @@ s.parentNode.insertBefore(hm, s);
 		}
 		});
 	}
-
-</script>
+*/
+</script>-->
 </body>
 
 <!-- Mirrored from www.btl2002.com/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 23 Dec 2019 08:31:58 GMT -->
