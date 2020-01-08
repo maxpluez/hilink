@@ -85,86 +85,63 @@
      Create an account
    </div>
    <div class="content_box">
-    <div class="cont">
+    <form class="cont" method="post" id="form1">
      <div class="regis_last clear">
-       <dl class="list">
-         <dt>First name</dt>
-         <dd><input type="text" name="" value=""> </dd>
-       </dl>
-       <dl class="list">
-         <dt>Surname</dt>
-         <dd><input type="text" name="" value=""> </dd>
-       </dl>
+       
+         <div><p>First name</p><div>
+         <div><input type="text" name="firstname" value=""> </div>
+       
+       
+         <p>Last name</p>
+         <div><input type="text" name="lastname" value=""> </div>
+       
      </div>
-     <dl class="list">
-       <dt>Birthday</dt>
-       <dd><input type="text" name="" value=""> </dd>
-     </dl>
-     <dl class="list">
-       <dt>Mailbox</dt>
-       <dd>
-         <select class="sele" name="">
-           <option>Month</option>
-         </select>
-         <select class="sele" name="">
-           <option>Day</option>
-         </select>
-         <select class="sele" name="">
-           <option>Year</option>
-         </select>
-       </dd>
-     </dl>
-     <dl class="list">
-       <dt>School</dt>
-       <dd><input type="text" name="" value=""> </dd>
-     </dl>
-     <dl class="list">
-       <dt>Grade</dt>
-       <dd><input type="text" name="" value=""> </dd>
-     </dl>
-     <dl class="list">
-       <dt>Mailbox</dt>
-       <dd><input type="text" name="" value=""> </dd>
-     </dl>
-     <div class="authen_image">
-       <h2>Authentication</h2>
-       <div class="cont_box">
-         <div class="authen_image_box">
-           <img id="authen_img" src="" alt="">
-           <span class="shut">X</span>
-         </div>
-         <div class="file_btn" >
-           <input type="file" id="authen_file" name="" value="">
-           UPLOAD IMAGE
-         </div>
+     <div class="list">
+      <div><p>Account ID</p></div>
+      <div><input type="text" name="accid" value=""> </div>
+    </div>
+    <div class="list">
+      <div><p>Password</p></div>
+      <div><input type="password" name="pwd" value=""> </div>
+    </div>
+    <div class="list">
+      <div><p>Repeat password</p></div>
+      <div><input type="password" name="repwd" value=""> </div>
+    </div>
+     <div class="list">
+       <div><p>Birthday</p></div>
+       <div>
+         <input type="text" name="bdaymonth" placeholder="MM">
+         <input type="text" name="bdayday" placeholder="DD">
+         <input type="text" name="bdayyear" placeholder="YYYY">
        </div>
+     </div>
+     <div class="list">
+       <div><p>School</p></div>
+       <div><input type="text" name="school" value=""> </div>
+     </div>
+     <div class="list">
+       <div><p>Grade</p></div>
+       <div><input type="text" name="grade" value=""> </div>
+     </div>
+     <div class="list">
+       <div><p>E-mail</p></div>
+       <div><input type="text" name="email" value=""> </div>
+     </div>
+     
        <div class="bit_txt">
          Your personal data will be used to support your experience across the site, to manage access to your account, and for other purposes as described in our privacy policy.
        </div>
-     </div>
+     
      <div class="bit_btn">
-       <a href="#" class="regis_btn">REGISTERED</a>
-       <p>Are you already in our account? <a href="#">log in</a> </p>
+       <input type="submit" value="Register" class="regis_btn" />
+       <p>Already had an account? <a href="login.html">log in</a> </p>
      </div>
-    </div>
+    </form>
    </div>
  </div>
 </div>
 <!-- -->
-<div class="footer_nav_cont warpin clear">
-  <ul class="navi">
-    <li><a href="#">Legal advice</a></li>
-    <li><a href="#">Contact information</a></li>
-    <li><a href="#">Nav Bar</a></li>
-    <li><a href="#">Nav Bar</a></li>
-  </ul>
-  <div class="header_sele_box">
-   <select class="header_lang" tabindex="1">
-     <option value="">Select a Country</option>
-     <option value="EN" data-icon="i/gq.png">English</option>
-   </select>
-  </div>
-</div>
 <div class="footer_copy">
    ©2003-2019  Hilink   add:  TEl：023-2223 20202
 </div>

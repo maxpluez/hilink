@@ -513,9 +513,6 @@ table td,table th{
 	margin-left:20px;
 }
 /* */
-.index_tutor_content{
-	margin-bottom:60px;
-}
 .index_tutor_content .tis_tle{
 	font-size:36px;
 	font-weight: bold;
@@ -1246,8 +1243,8 @@ table td,table th{
 }
 /* */
 .login_content_box{
-	padding-top: 50px;
-	padding-bottom: 80px;
+	padding-top: 30px;
+	padding-bottom: 0;
 	background: #f8f8f8;
 }
 .login_content_box .tis_tle{

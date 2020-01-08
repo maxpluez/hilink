@@ -2,6 +2,7 @@ var express = require('express');
 var path = require('path');
 var axios = require('axios');
 var cookieSession = require('cookie-session')
+var bodyParser = require('body-parser')
 
 var app = express();
 
@@ -34,23 +35,124 @@ connection.on('connect', function(err) {
   }
 });
 
-function CreateAccount(name, password) {
-  console.log("Inserting '" + name + "' into Table...");
+app.use(express.static("public"));
+app.use(express.json());
+app.use(cookieSession({keys:["hilink"], maxAge:10*60*1000}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
+app.post('/register.html', function(req, res, next) {
+  var b = req.body;
+
+  //insert b into table
+  console.log("Inserting '" + b.accid + "' into Table...");
 
   request = new Request(
-      'INSERT INTO Users.Accounts (Name, Password) OUTPUT INSERTED.Id VALUES (@Name, @Password);',
-      function(err, rowCount, rows) {
-      if (err) {
-          console.log(err);
-      } else {
-          console.log(rowCount + ' row(s) inserted');
-      }
-      });
-  request.addParameter('Name', TYPES.NVarChar, name);
-  request.addParameter('Password', TYPES.NVarChar, password);
+    'INSERT INTO Users.Accounts (FirstName, LastName, AccountName, Password, School, Grade, Email) OUTPUT INSERTED.Id VALUES (@FirstName, @LastName, @AccountName, @Password, @School, @Grade, @Email);',
+    function(err, rowCount, rows) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(rowCount + ' row(s) inserted');
+    }
+  });
+
+  //Format birthday into DATE type object
+  var bdaystring = ""+b.bdayyear+"-"+b.bdaymonth+"-"+b.bdayday;
+
+  request.addParameter('FirstName', TYPES.NVarChar, b.firstname);
+  request.addParameter('LastName', TYPES.NVarChar, b.lastname);
+  request.addParameter('AccountName', TYPES.NVarChar, b.accid);
+  request.addParameter('Password', TYPES.NVarChar, b.pwd);
+  request.addParameter('Birthday', TYPES.Date, bdaystring);
+  request.addParameter('School', TYPES.NVarChar, b.school);
+  request.addParameter('Grade', TYPES.TinyInt, b.grade);
+  request.addParameter('Email', TYPES.NVarChar, b.email);
 
   // Execute SQL statement
   connection.execSql(request);
+  
+  res.redirect('/register.html');
+});
+
+app.post('/login.html', function(req, res, next){
+  console.log("Checking password...")
+  var b = req.body;
+
+  console.log('Reading from the Table...');
+
+  // Read all rows from table
+  var reqstring = "SELECT Password FROM Users.Accounts WHERE AccountName='" + b.accid + "';"
+  request = new Request(reqstring, function(err, rowCount, rows) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(rowCount + ' row(s) returned');
+    }
+  });
+
+  // Retrieve password & Print the rows read
+  var result = "";
+  request.on('row', function(columns) {
+    columns.forEach(function(column) {
+      if (column.value === null) {
+        console.log('NULL');
+      } else {
+        result = column.value;
+      }
+    });
+    if(result===b.pwd){
+      console.log("Matched!");
+      res.redirect('/');
+    } else {
+      console.log("Not matched!");
+      res.redirect('/login.html')
+    }
+  });
+
+  connection.execSql(request);
+});
+
+app.listen(8080);
+
+
+//ignore everything below
+
+/*
+function CreateAccount(name, password) {
+  console.log("Inserting '" + b.accid + "' into Table...");
+
+  request = new Request(
+    'INSERT INTO Users.Accounts (FirstName, LastName, AccountName, Password, Birthday, School, Grade, Email) OUTPUT INSERTED.Id VALUES (@FirstName, @LastName, @AccountName, @Password, @Birthday, @School, @Grade, @Email);',
+    function(err, rowCount, rows) {
+    if (err) {
+      console.log("an error when inserting into db")
+      console.log(err);
+    } else {
+      console.log(rowCount + ' row(s) inserted');
+    }
+  });
+  console.log("request defined")
+
+  //Format birthday into DATE type object
+  var bdaystring = ""+ b.bdayyear + "-" + b.bdaymonth + "-" + b.bdayday;
+  console.log("bdaystring: "+bdaystring)
+
+  request.addParameter('FirstName', TYPES.NVarChar, b.firstname);
+  request.addParameter('LastName', TYPES.NVarChar, b.lastname);
+  request.addParameter('AccountName', TYPES.NVarChar, b.accid);
+  request.addParameter('Password', TYPES.NVarChar, b.pwd);
+  request.addParameter('Birthday', TYPES.DATE, bdaystring);
+  request.addParameter('School', TYPES.NVarChar, b.school);
+  request.addParameter('Grade', TYPES.TINYINT, b.grade);
+  request.addParameter('Email', TYPES.NVarChar, b.email);
+  console.log("request ready")
+
+  // Execute SQL statement
+  connection.execSql(request);
+  console.log("request executed")
 }
 
 async function CheckPassword(name, password) {
@@ -91,65 +193,4 @@ async function CheckPassword(name, password) {
   // Execute SQL statement
   connection.execSql(request);
 }
-
-app.use(express.static("public"));
-app.use(express.json());
-app.use(cookieSession({keys:["hilink"], maxAge:10*60*1000}));
-
-app.post('/register.html', function(req, res, next) {
-  var b = req.body;
-  var accname;
-  var pwd;
-  try{
-    for(jsonobj of b){
-      if(jsonobj.name=='phone'){
-        accname=jsonobj.value;
-      }
-      if(jsonobj.name=='password'){
-        pwd=jsonobj.value;
-      }
-    }
-    CreateAccount(accname, pwd);
-  }
-  catch(e){}
-  finally{}
-  res.redirect('/login.html');
-});
-
-app.post('/login.html', async function(req, res, next){
-  console.log("Checking password...")
-  var b = req.body;
-  var accname;
-  var pwd;
-  var result;
-  var flag = false;
-  try{
-    for(jsonobj of b){
-     if(jsonobj.name=='phone'){
-        accname=jsonobj.value;
-      }
-      if(jsonobj.name=='password'){
-        pwd=jsonobj.value;
-      }
-    }
-    flag = true;
-    let p = new Promise(function(resolve, reject){
-      resolve(CheckPassword(accname, pwd));
-    });
-    result = await p;
-    console.log("result: " + result);
-  }
-  catch(e){}
-  finally{}
-  if(flag && result){
-    flag = false;
-    console.log("Redirecting to Home...")
-    res.redirect('/');
-} else {
-    flag = false;
-    console.log("Redirecting to ReLogin...")
-    res.redirect('/login.html');
-  }
-});
-
-app.listen(8080);
+*/
