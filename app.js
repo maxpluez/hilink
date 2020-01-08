@@ -12,16 +12,16 @@ var TYPES = require('tedious').TYPES;
 
 // Create connection to database
 var config = {
-  server: 'localhost',
+  server: 'hilinkdb01.database.windows.net',
   authentication: {
       type: 'default',
       options: {
-          userName: 'sa', // update me
-          password: 'HiLink101' // update me
+          userName: 'admin-hilink', // update me
+          password: 'W3lcome2HL' // update me
       }
   },
   options: {
-      database: 'Users'
+      database: 'HiLinkDB01'
   }
 }
 var connection = new Connection(config);
@@ -104,10 +104,8 @@ app.post('/login.html', function(req, res, next){
       }
     });
     if(result===b.pwd){
-      console.log("Matched!");
       res.redirect('/');
     } else {
-      console.log("Not matched!");
       res.redirect('/login.html')
     }
   });
