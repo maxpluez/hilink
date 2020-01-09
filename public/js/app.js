@@ -26,6 +26,12 @@ window.addEventListener('resize', function(){
 });
 })();
 })*/
+$(".index_search_box .search_sele").mouseenter(function(){
+  $(this).children(".search_sele_btn").addClass("hover")
+})
+$(".index_search_box .search_sele .search_sele_btn").mouseleave(function(){
+  $(this).removeClass("hover")
+})
 $(".case_item_menu .item").mouseenter(function(){
   $(this).toggleClass("hover")
 })

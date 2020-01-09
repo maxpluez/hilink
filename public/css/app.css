@@ -8,7 +8,6 @@
 	-webkit-box-sizing: border-box;
 }
 body{
-	min-width:1550px;
 	margin:0 auto;
 	font-size:12px;
 	font-family:"Microsoft Yahei";
@@ -73,7 +72,7 @@ table td,table th{
 	height:0;
 }
 .warpin{
-	width: 1550px;
+	max-width: 1567px;
 	margin:0 auto;
 }
 .header_tip_box{
@@ -98,6 +97,11 @@ table td,table th{
 	background: #fff;
 	box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
 }
+.index_search_box .warpin{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
 .index_search_box .logo{
 	float: left;
 	height: 55px;
@@ -110,6 +114,7 @@ table td,table th{
 	height: 100%;
 }
 .index_search_box .menu_box{
+	display: none;
 	float: left;
 	height: 55px;
 	line-height: 55px;
@@ -124,6 +129,7 @@ table td,table th{
 	margin-top: -4px;
 }
 .index_search_box .search_box{
+	display: none;
 	float: left;
 	width: 894px;
 	padding:9px 0;
@@ -143,12 +149,15 @@ table td,table th{
 	float: right;
 	width: 220px;
 	height: 55px;
-	line-height: 55px;
+	position: relative;
+	z-index:20;
 }
-.index_search_box .search_sele select{
+.index_search_box .search_sele .sele_btn_box{
 	display: block;
-	width: 100%;
-	height: 100%;
+	width: 220px;
+	height: 55px;
+	line-height: 55px;
+	box-shadow: 0px 0px 8px rgba(179,219,192,0.7);
 	background: #fff url(../i/tis_arr.png) no-repeat 96% center;
 	background-size:15px;
 	padding-left:16px;
@@ -156,16 +165,44 @@ table td,table th{
 	color:#679676;
 	font-family: "Arial";
 	border:none;
-	-webkit-appearance: none;
+	cursor: default;
+}
+.index_search_box .search_sele .search_sele_btn{
+  position: absolute;
+	top: 55px;
+	left:0;
+	width: 100%;
+	display: flex;
+	transition: all 0.5s;
+	height: 0;
+	opacity: 0;
+}
+.search_sele_btn a{
+	display: block;
+	width: 48%;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	background: #fff;
 	box-shadow: 0px 0px 8px rgba(179,219,192,0.7);
+	font-size: 18px;
+	color: #679676;
+	margin-top: 10px;
+	margin: 10px 1% 0;
+	border-radius: 5px;
+}
+.index_search_box .search_sele .search_sele_btn.hover{
+	height: auto;
+	opacity: 1;
+}
+.index_search_box .menu_nav_box{
+
 }
 .index_navi_cont{
 	width: 100%;
-	padding:18px 0;
-	background: #f8f8f8;
 }
 .index_navi_cont .content_box{
-	display: table;
+	max-width: 1550px;
 	margin:0 auto;
 }
 .index_navi_cont .content_box .nav_last{
@@ -173,13 +210,13 @@ table td,table th{
 	display: block;
 	height: 56px;
 	line-height: 56px;
-	width: 300px;
 	text-align: center;
 	background: #fff;
 	border:1px solid #b3dbc0;
 	margin:0 1px;
 	position: relative;
 	z-index:11;
+	padding:0 40px;
 }
 .index_navi_cont .content_box .nav_last a{
 	font-size:22px;
@@ -345,13 +382,14 @@ table td,table th{
 }
 .index_case_1 .content_box .case_cont{
 	padding:24px;
+	overflow: hidden;
 }
 .case_item_menu{
-	width: 710px;
+	width: 100%;
 }
 .case_item_menu .item{
 
-	width: 294px;
+	width: 40%;
 	height: 310px;
 	float: left;
 	margin-right: 6px;
@@ -1143,7 +1181,7 @@ table td,table th{
 }
 .campsite_detail_tis .sign_box{
 	position: absolute;
-	right: -45px;
+	right: 0;
 	top: 35px;
 	display: block;
 	width: 178px;
@@ -1265,32 +1303,25 @@ table td,table th{
 	width: 630px;
 	margin:0 auto;
 }
-.login_content_box .content_box .list{
-  width: 100%;
-	margin-bottom: 24px;
-}
-.login_content_box .content_box .list dt{
+
+.login_content_box .content_box P{
 	display: block;
 	font-size:20px;
 	color:#333333;
 	line-height: 38px;
 }
-.login_content_box .content_box .list dd{
+
+.login_content_box .content_box input{
 	display: block;
 	width: 100%;
-	height: 50px;
-}
-.login_content_box .content_box .list dd input{
-	display: block;
-	width: 100%;
-	height: 100%;
+	height: 50PX;
 	border:1px solid #d3d4d7;
 	background: #fbfbfb;
 	border-radius: 3px;
 	font-size:16px;
 	padding-left:10px;
 }
-.login_content_box .content_box .list dd input:focus{
+.login_content_box .content_box input:focus{
 	background: #fff;
 	border:1px solid #b3dbc0;
 	box-shadow: 0px 0px 9px rgba(179,219,129,0.75);
@@ -1308,6 +1339,7 @@ table td,table th{
 	border-radius: 3px;
 	box-shadow: 0px 0px 9px rgba(179,219,192,0.75);
 	margin-bottom: 90px;
+	margin-top: 50px;
 }
 .login_content_box .content_box .regis_box{
 
@@ -1359,9 +1391,9 @@ table td,table th{
 	margin-bottom: 30px;
 }
 .regis_content_box .content_box .list{
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
-.regis_content_box .content_box .regis_last .list{
+/*.regis_content_box .content_box .regis_last .list{
 	margin-bottom: 0;
 	float: left;
 	width: 44%;
@@ -1369,32 +1401,28 @@ table td,table th{
 }
 .regis_content_box .content_box .regis_last .list:last-child{
 	margin-right: 0;
-}
-.regis_content_box .content_box .list dt{
+}*/
+.regis_content_box .content_box  p{
 	display: block;
 	font-size:20px;
 	color:#333333;
 	line-height: 38px;
 }
-.regis_content_box .content_box .list dd{
-	width: 100%;
-	height: 50px;
-	background: #fff;
-}
-.regis_content_box .content_box .list input{
+.regis_content_box .content_box  input{
 	display: block;
 	width: 100%;
-	height: 100%;
+	height: 50px;
 	padding-left:10px;
 	background: #fbfbfb;
 	border:1px solid #d3d4d7;
+	margin-bottom: 10px;
 }
-.regis_content_box .content_box .list input:focus{
+.regis_content_box .content_box input:focus{
 	background: #fff;
 	border:1px solid #b3dbc0;
 	box-shadow: 0px 0px 9px rgba(179,219,129,0.75);
 }
-.regis_content_box .content_box .list .sele{
+.regis_content_box .content_box .sele{
 	display: block;
 	float: left;
 	height:100%;
@@ -1643,4 +1671,70 @@ table td,table th{
 	font-size:15px;
 	color:#9d9999;
 	font-family: "Arial";
+}
+/* */
+@media (max-width: 1500px){
+  .index_navi_cont .content_box .nav_last{
+		padding:0 10px;
+	}
+ .down_cont_box .lt_cont{
+	 width: 100%;
+ }
+ .down_cont_box .rt_cont{
+	 width: 100%;
+ }
+ .competi_bit_content{
+	 width: 100%;
+ }
+ .competi_bit_content .competi_bit_box{
+	 width: 90%;
+ }
+ .campsite_content_box{
+	 width: 90%;
+ }
+ .case_item_menu .item{
+	width: 50% !important;
+	height: 200px !important;
+	margin-right: 0;
+ }
+}
+@media (max-width: 1200px){
+ .battalion_last_box .content_box .battalion_list{
+	 margin-bottom:10px;
+ }
+ .campsite_content_box .item{
+	 width: 100%;
+ }
+ .campsite_content_box .item img{
+	 width: 100%;
+ }
+ .tutor_tip_navi .list{
+	     width: calc((100% - 105px ) / 3);
+ }
+ .tutor_last_content .list_box .ava_box{
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
+	 width: 100%;
+ }
+ .tutor_last_content .list_box .txt_cont{
+	 border-right: none;
+ }
+ .tutor_last_content .list_box .price_box{
+	 width: 100%;
+ }
+
+  .case_item_menu .item img{
+		width: 100% ;
+		height: 100% ;
+	}
+	.campsite_detail_tis .campsite_detail_item .item{
+		width: 48% !important;
+		height: 320px;
+	}
+	.campsite_detail_tis .campsite_detail_item .item img{
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
 }
