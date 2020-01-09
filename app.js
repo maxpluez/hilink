@@ -1,6 +1,5 @@
 var express = require('express');
 var path = require('path');
-var axios = require('axios');
 var cookieSession = require('cookie-session')
 var bodyParser = require('body-parser')
 
@@ -74,7 +73,7 @@ app.post('/register.html', function(req, res, next) {
   // Execute SQL statement
   connection.execSql(request);
   
-  res.redirect('/register.html');
+  res.redirect('/login.html');
 });
 
 app.post('/login.html', function(req, res, next){
