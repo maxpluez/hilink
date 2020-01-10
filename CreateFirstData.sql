@@ -1,6 +1,9 @@
 DROP TABLE IF EXISTS users.accounts
 Go
 
+DROP TABLE IF EXISTS users.sessions
+Go
+
 DROP SCHEMA IF EXISTS users
 GO
 
@@ -25,4 +28,15 @@ INSERT INTO Users.Accounts (AccountName, Password) VALUES
 GO
 
 SELECT * FROM Users.Accounts;
+GO
+
+CREATE TABLE Users.Sessions(
+  [Sid] varchar(255) NOT NULL
+    CONSTRAINT [PK_Sessions] PRIMARY KEY CLUSTERED ([Sid] ASC),
+  [Expires] datetimeoffset NOT NULL,
+  [Sess] nvarchar(MAX) NULL
+);
+GO
+
+SELECT * FROM Users.Sessions;
 GO

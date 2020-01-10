@@ -2,6 +2,9 @@ var express = require('express');
 var path = require('path');
 var cookieSession = require('cookie-session')
 var bodyParser = require('body-parser')
+var session = require('express-session')
+var TediousStore = require('connect-tedious')(session);
+var cons = require('consolidate');
 
 var app = express();
 
@@ -10,7 +13,7 @@ var Request = require('tedious').Request;
 var TYPES = require('tedious').TYPES;
 
 // Create connection to database
-
+/*
 var config = {
   server: 'hilinkdb01.database.windows.net',
   authentication: {
@@ -24,8 +27,8 @@ var config = {
       database: 'HiLinkDB01'
   }
 }
+*/
 
-/*
 var config = {
   server: 'localhost',
   authentication: {
@@ -39,7 +42,7 @@ var config = {
       database: 'Users'
   }
 }
-*/
+
 var connection = new Connection(config);
 
 // Attempt to connect and execute queries if connection goes through
@@ -51,12 +54,32 @@ connection.on('connect', function(err) {
   }
 });
 
-app.use(express.static("public"));
+// view engine setup
+app.engine('html', cons.swig)
+app.set('views', path.join(__dirname, 'public'));
+app.set('view engine', 'html');
+
 app.use(express.json());
-app.use(cookieSession({keys:["hilink"], maxAge:10*60*1000}));
+//app.use(cookieSession({keys:["hilink"], maxAge:10*60*1000}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
+}));
+app.use(session({
+  secret: 'hilink',
+  store: new TediousStore({
+    config: {
+      userName: 'sa',
+      password: 'HiLink101',
+      server: 'localhost',
+      options: {
+        database: 'Users'
+      }
+    },
+      tableName: 'Users.Sessions'
+  }),
+  saveUninitialized: false,
+  resave: false
 }));
 
 app.post('/register.html', function(req, res, next) {
@@ -158,7 +181,9 @@ app.post('/login.html', function(req, res, next){
       }
     });
     if(result===b.pwd){
+      req.session.key=b.accid;
       res.redirect('/');
+      console.log("Session key: " + req.session.key);
     } else {
       res.redirect('/login.html')
     }
@@ -166,6 +191,16 @@ app.post('/login.html', function(req, res, next){
 
   connection.execSql(request);
 });
+
+/*
+app.get('/', function(req, res, next){
+  console.log("")
+  console.log("Accessing index page...\nChecking if logged in...")
+  console.log("Session key: " + req.session.key)
+});
+*/
+
+app.use(express.static("public"));
 
 app.listen(8080);
 
