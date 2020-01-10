@@ -10,6 +10,22 @@ var Request = require('tedious').Request;
 var TYPES = require('tedious').TYPES;
 
 // Create connection to database
+
+var config = {
+  server: 'hilinkdb01.database.windows.net',
+  authentication: {
+      type: 'default',
+      options: {
+          userName: 'admin-hilink', // update me
+          password: 'W3lcome2HL' // update me
+      }
+  },
+  options: {
+      database: 'HiLinkDB01'
+  }
+}
+
+/*
 var config = {
   server: 'localhost',
   authentication: {
@@ -23,6 +39,7 @@ var config = {
       database: 'Users'
   }
 }
+*/
 var connection = new Connection(config);
 
 // Attempt to connect and execute queries if connection goes through
@@ -49,9 +66,8 @@ app.post('/register.html', function(req, res, next) {
   console.log("Inserting '" + b.accid + "' into Table...");
 
   //Check if connected. If not, connect.
-  console.log("Current connection state: " + connection.state);
-  console.log("Desired state: " + connection.STATE.LOGGED_IN);
-  console.log("Are they equal? " + (connection.state !== connection.STATE.LOGGED_IN))
+  //console.log("Current connection state: " + connection.state.name);
+  //console.log("Desired state: " + connection.STATE.LOGGED_IN.name);
   if(connection.state !== connection.STATE.LOGGED_IN){
     console.log("Previously disconnected. Now reconnecting...");
     connection.close();
@@ -100,6 +116,8 @@ app.post('/login.html', function(req, res, next){
   console.log('Reading from the Table...');
 
   //Check if connected. If not, connect.
+  //console.log("Current connection state: " + connection.state.name);
+  //console.log("Desired state: " + connection.STATE.LOGGED_IN.name);
   if(connection.state !== connection.STATE.LOGGED_IN){
     console.log("Previously disconnected. Now reconnecting...");
     connection.close();
