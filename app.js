@@ -81,6 +81,9 @@ app.post('/register.html', function(req, res, next) {
     });
   }
 
+  //proceed until connected
+  while(connection.state !== connection.STATE.LOGGED_IN){}
+
   request = new Request(
     'INSERT INTO Users.Accounts (FirstName, LastName, AccountName, Password, School, Grade, Email) OUTPUT INSERTED.Id VALUES (@FirstName, @LastName, @AccountName, @Password, @School, @Grade, @Email);',
     function(err, rowCount, rows) {
@@ -130,6 +133,9 @@ app.post('/login.html', function(req, res, next){
       }
     });
   }
+
+  //proceed until connected
+  while(connection.state !== connection.STATE.LOGGED_IN){}
 
   // Read all rows from table
   var reqstring = "SELECT Password FROM Users.Accounts WHERE AccountName='" + b.accid + "';"
