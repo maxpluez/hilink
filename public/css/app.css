@@ -556,7 +556,7 @@ table td,table th{
 	font-weight: bold;
 	color:#222222;
 	font-family: "Arial";
-	margin-bottom: 24px;
+	margin-bottom: 0;
 }
 .index_tutor_content  .lt_cont_box{
 	float: left;
@@ -647,7 +647,7 @@ table td,table th{
 /* */
 .tutor_content_box{
 	background: #f8f8f8;
-	padding:15px 0 274px 0;
+	padding:15px 0 0 0;
 }
 .tutor_tip_navi{
 	width: 100%;
@@ -1166,7 +1166,8 @@ table td,table th{
 	box-shadow: 0px 0px 8px rgba(0,0,0,0.04);
 }
 .campsite_detail_tis .tis_tle{
-	padding:36px 30px;
+	padding: 0;
+	padding-top: 10px;
 }
 .campsite_detail_tis .tis_tle h2{
 	font-size:40px;
@@ -1202,7 +1203,7 @@ table td,table th{
 	margin-left:32px;
 }
 .campsite_detail_tis .campsite_detail_item{
-	margin-top: 144px;
+	margin-top: 30px;
 }
 .campsite_detail_tis .campsite_detail_item .item{
 	position: absolute;
@@ -1289,7 +1290,8 @@ table td,table th{
 	text-align: center;
 	font-size:36px;
 	color:#212529;
-	margin-bottom:20px;
+	margin-bottom: 0;
+	padding-top: 10px;
 }
 .login_content_box .content_box{
 	width: 100%;
@@ -1372,7 +1374,7 @@ table td,table th{
 	text-align: center;
 	font-size:36px;
 	color:#212529;
-	margin-bottom:20px;
+	margin-bottom: 0;
 }
 .regis_content_box .content_box{
 	width: 100%;
@@ -1544,7 +1546,7 @@ table td,table th{
 .down_cont_box .tis_tle{
 	font-size:35px;
 	color:#444444;
-	margin-bottom:
+	margin-bottom: 0;
 }
 .down_cont_box .lt_cont .tab_head{
 	display:flex;

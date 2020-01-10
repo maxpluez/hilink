@@ -11,16 +11,16 @@ var TYPES = require('tedious').TYPES;
 
 // Create connection to database
 var config = {
-  server: 'hilinkdb01.database.windows.net',
+  server: 'localhost',
   authentication: {
       type: 'default',
       options: {
-          userName: 'admin-hilink', // update me
-          password: 'W3lcome2HL' // update me
+          userName: 'sa', // update me
+          password: 'HiLink101' // update me
       }
   },
   options: {
-      database: 'HiLinkDB01'
+      database: 'Users'
   }
 }
 var connection = new Connection(config);
@@ -47,6 +47,23 @@ app.post('/register.html', function(req, res, next) {
 
   //insert b into table
   console.log("Inserting '" + b.accid + "' into Table...");
+
+  //Check if connected. If not, connect.
+  console.log("Current connection state: " + connection.state);
+  console.log("Desired state: " + connection.STATE.LOGGED_IN);
+  console.log("Are they equal? " + (connection.state !== connection.STATE.LOGGED_IN))
+  if(connection.state !== connection.STATE.LOGGED_IN){
+    console.log("Previously disconnected. Now reconnecting...");
+    connection.close();
+    connection = new Connection(config);
+    connection.on('connect', function(err) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('Connected');
+      }
+    });
+  }
 
   request = new Request(
     'INSERT INTO Users.Accounts (FirstName, LastName, AccountName, Password, School, Grade, Email) OUTPUT INSERTED.Id VALUES (@FirstName, @LastName, @AccountName, @Password, @School, @Grade, @Email);',
@@ -81,6 +98,20 @@ app.post('/login.html', function(req, res, next){
   var b = req.body;
 
   console.log('Reading from the Table...');
+
+  //Check if connected. If not, connect.
+  if(connection.state !== connection.STATE.LOGGED_IN){
+    console.log("Previously disconnected. Now reconnecting...");
+    connection.close();
+    connection = new Connection(config);
+    connection.on('connect', function(err) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('Connected');
+      }
+    });
+  }
 
   // Read all rows from table
   var reqstring = "SELECT Password FROM Users.Accounts WHERE AccountName='" + b.accid + "';"
