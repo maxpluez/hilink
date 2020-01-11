@@ -1,10 +1,10 @@
 var express = require('express');
 var path = require('path');
-var cookieSession = require('cookie-session')
+//var cookieSession = require('cookie-session')
 var bodyParser = require('body-parser')
 var session = require('express-session')
 var TediousStore = require('connect-tedious')(session);
-var cons = require('consolidate');
+//var cons = require('consolidate');
 
 var app = express();
 
@@ -55,9 +55,13 @@ connection.on('connect', function(err) {
 });
 
 // view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+/*
 app.engine('html', cons.swig)
 app.set('views', path.join(__dirname, 'public'));
 app.set('view engine', 'html');
+*/
 
 app.use(express.json());
 //app.use(cookieSession({keys:["hilink"], maxAge:10*60*1000}));
@@ -68,6 +72,7 @@ app.use(bodyParser.urlencoded({
 app.use(session({
   secret: 'hilink',
   store: new TediousStore({
+    /*
     config: {
       userName: 'sa',
       password: 'HiLink101',
@@ -75,8 +80,19 @@ app.use(session({
       options: {
         database: 'Users'
       }
-    },
-      tableName: 'Users.Sessions'
+    }
+    */
+
+    config: {
+      userName: 'sa',
+      password: 'HiLink101',
+      server: 'localhost',
+      options: {
+        database: 'Users'
+      }
+    }
+
+    , tableName: 'Users.Sessions'
   }),
   saveUninitialized: false,
   resave: false
@@ -182,7 +198,7 @@ app.post('/login.html', function(req, res, next){
     });
     if(result===b.pwd){
       req.session.key=b.accid;
-      res.redirect('/');
+      res.redirect('/userredirect');
       console.log("Session key: " + req.session.key);
     } else {
       res.redirect('/login.html')
@@ -192,13 +208,22 @@ app.post('/login.html', function(req, res, next){
   connection.execSql(request);
 });
 
-/*
-app.get('/', function(req, res, next){
-  console.log("")
-  console.log("Accessing index page...\nChecking if logged in...")
-  console.log("Session key: " + req.session.key)
+app.get('/userredirect', function(req, res, next){
+  if(!req.session.key){
+    res.redirect('login.html');
+  } else {
+    res.render('user', {m_id: req.session.key});
+  }
 });
-*/
+
+app.get('/logout', function(req, res, next){
+  req.session.destroy((err) => {
+    if(err) {
+        return console.log(err);
+    }
+    res.redirect('/');
+  });
+});
 
 app.use(express.static("public"));
 

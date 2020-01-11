@@ -12,7 +12,9 @@
     "cookie-session": "^1.3.3",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
+    "jade": "^1.11.0",
     "mssql": "^6.0.1",
+    "pug": "^2.0.4",
     "sequelize": "^5.21.3",
     "swig": "^1.4.2",
     "tedious": "^6.6.5"

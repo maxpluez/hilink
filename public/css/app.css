@@ -158,14 +158,15 @@ table td,table th{
 	height: 55px;
 	line-height: 55px;
 	box-shadow: 0px 0px 8px rgba(179,219,192,0.7);
-	background: #fff url(../i/tis_arr.png) no-repeat 96% center;
+	background: #fff url(../i/usericon.png) no-repeat 15% center;
 	background-size:15px;
-	padding-left:16px;
+	/*padding-left:16px;*/
 	font-size:18px;
 	color:#679676;
 	font-family: "Arial";
 	border:none;
 	cursor: default;
+	text-align: center;
 }
 .index_search_box .search_sele .search_sele_btn{
   position: absolute;
@@ -187,8 +188,9 @@ table td,table th{
 	box-shadow: 0px 0px 8px rgba(179,219,192,0.7);
 	font-size: 18px;
 	color: #679676;
-	margin-top: 10px;
-	margin: 10px 1% 0;
+	/*margin-top: 10px;
+	margin: 10px 1% 0;*/
+	margin: auto auto;
 	border-radius: 5px;
 }
 .index_search_box .search_sele .search_sele_btn.hover{
