@@ -13,7 +13,7 @@ var Request = require('tedious').Request;
 var TYPES = require('tedious').TYPES;
 
 // Create connection to database
-/*
+
 var config = {
   server: 'hilinkdb01.database.windows.net',
   authentication: {
@@ -24,11 +24,12 @@ var config = {
       }
   },
   options: {
-      database: 'HiLinkDB01'
+      database: 'HiLinkDB01',
+      encrypt: true
   }
 }
-*/
 
+/*
 var config = {
   server: 'localhost',
   authentication: {
@@ -42,7 +43,7 @@ var config = {
       database: 'Users'
   }
 }
-
+*/
 var connection = new Connection(config);
 
 // Attempt to connect and execute queries if connection goes through
@@ -82,16 +83,17 @@ app.use(session({
       }
     }
     */
-
+    
     config: {
-      userName: 'sa',
-      password: 'HiLink101',
-      server: 'localhost',
+      userName: 'admin-hilink',
+      password: 'W3lcome2HL',
+      server: 'hilinkdb01.database.windows.net',
       options: {
-        database: 'Users'
+        database: 'HiLinkDB01',
+        encrypt: true
       }
     }
-
+    
     , tableName: 'Users.Sessions'
   }),
   saveUninitialized: false,
@@ -152,10 +154,8 @@ app.post('/register.html', function(req, res, next) {
 });
 
 app.post('/login.html', function(req, res, next){
-  console.log("Checking password...")
   var b = req.body;
-
-  console.log('Reading from the Table...');
+  console.log("Checking password for " + b.accid + "...");
 
   //Check if connected. If not, connect.
   //console.log("Current connection state: " + connection.state.name);
@@ -184,6 +184,10 @@ app.post('/login.html', function(req, res, next){
     } else {
       console.log(rowCount + ' row(s) returned');
     }
+    if(rowCount == 0){
+      console.log("Account not found!")
+      res.redirect('login.html');
+    }
   });
 
   // Retrieve password & Print the rows read
@@ -199,7 +203,6 @@ app.post('/login.html', function(req, res, next){
     if(result===b.pwd){
       req.session.key=b.accid;
       res.redirect('/userredirect');
-      console.log("Session key: " + req.session.key);
     } else {
       res.redirect('/login.html')
     }
