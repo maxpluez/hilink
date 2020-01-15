@@ -96,7 +96,7 @@
     <dl class="list">
       <dt>Subject</dt>
       <dd>
-        <select class="sele" name="">
+        <select class="sele" name="" id="selectSubject" onchange="changeSubject();">
           <option>All Subjects</option>
           <option>College Advising</option>
           <option>Toefl/SAT</option>
@@ -128,8 +128,23 @@
     </dl>
   </div>
   <!-- -->
+  <script type="text/javascript">
+
+    function changeSubject() {
+     var selectBox = document.getElementById("selectSubject");
+     var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+     if(selectedValue==='All Subjects'){
+       $(".list_box.clear").show();
+     }
+     if(selectedValue==='College Advising'){
+      $(".list_box.clear.w").hide();
+    }
+    }
+ 
+   </script>
+   <!-- -->
   <div class="tutor_last_content">
-    <div class="list_box clear">
+    <div class="list_box clear w" id="bozhibox">
       <div class="ava_box">
         <span class="ava"><img src="i/William1.jpeg" alt=""> </span>
         <span class="ax"></span>
@@ -168,6 +183,7 @@
       </div>
     </div>
     <!-- -->
+    <!--
     <div class="list_box clear">
       <div class="ava_box">
         <span class="ava"><img src="i/tutor_ava_2.png" alt=""> </span>
@@ -205,8 +221,9 @@
         <a href="#" class="btn">view profile</a>
       </div>
     </div>
+  -->
     <!-- -->
-    <div class="list_box clear">
+    <div class="list_box clear a">
       <div class="ava_box">
         <span class="ava"><img src="i/tutor_ava_3.png" alt=""> </span>
         <span class="ax"></span>
@@ -244,7 +261,7 @@
       </div>
     </div>
     <!-- -->
-    <div class="list_box clear">
+    <div class="list_box clear b">
       <div class="ava_box">
         <span class="ava"><img src="i/tutor_ava_4.png" alt=""> </span>
         <span class="ax"></span>
