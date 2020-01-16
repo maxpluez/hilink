@@ -96,9 +96,10 @@
     <dl class="list">
       <dt>Subject</dt>
       <dd>
-        <select class="sele" name="" id="selectSubject" onchange="changeSubject();">
+        <select class="sele" name="" id="selectSubject" onchange="changeFilter();">
           <option>All Subjects</option>
           <option>College Advising</option>
+          <option>Personal Statement</option>
           <option>Toefl/SAT</option>
           <option>AP/IB</option>
           <option>College Courses</option>
@@ -118,7 +119,7 @@
     <dl class="list">
       <dt>Language</dt>
       <dd>
-        <select class="sele" name="">
+        <select class="sele" name="" id="selectLanguage" onchange="changeFilter();">
           <option>All Languages</option>
           <option>English</option>
           <option>Chinese</option>
@@ -129,22 +130,59 @@
   </div>
   <!-- -->
   <script type="text/javascript">
+    function changeFilter() {
+      //initialize filters to default values
+      var filters = ["list_box", "list_box"];
 
-    function changeSubject() {
-     var selectBox = document.getElementById("selectSubject");
-     var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-     if(selectedValue==='All Subjects'){
-       $(".list_box.clear").show();
-     }
-     if(selectedValue==='College Advising'){
-      $(".list_box.clear.w").hide();
+      //change filters[0] according to subject filter
+      var selectBox = document.getElementById("selectSubject");
+      filters[0] = selectBox.options[selectBox.selectedIndex].value;
+      if(filters[0]==="All Subjects"){
+        filters[0] = "list_box";
+      }
+      if(filters[0]==="College Advising"){
+        filters[0] = "ca";
+      }
+      if(filters[0]==="Personal Statement"){
+        filters[0] = "ps";
+      }
+      if(filters[0]==="Toefl/SAT"){
+        filters[0] = "ts";
+      }
+      if(filters[0]==="AP/IB"){
+        filters[0] = "ai";
+      }
+      if(filters[0]==="College Courses"){
+        filters[0] = "cc";
+      }
+
+      //change filters[1] according to language filter
+      selectBox = document.getElementById("selectLanguage");
+      filters[1] = selectBox.options[selectBox.selectedIndex].value;
+      if(filters[1]==="All Languages"){
+        filters[1] = "list_box";
+      }
+      if(filters[1]==="English"){
+        filters[1] = "en";
+      }
+      if(filters[1]==="Chinese"){
+        filters[1] = "cn";
+      }
+      if(filters[1]==="Korean"){
+        filters[1] = "kr";
+      }
+
+      $(".list_box.clear").hide();
+      $(".list_box.clear").each(function(i, el){
+        if($(this).hasClass(filters[0]) && $(this).hasClass(filters[1])){
+          $(this).show();
+        }
+      });
     }
-    }
- 
    </script>
    <!-- -->
   <div class="tutor_last_content">
-    <div class="list_box clear w" id="bozhibox">
+    <div class="list_box clear ps cc en cn" id="bozhibox">
       <div class="ava_box">
         <span class="ava"><img src="i/William1.jpeg" alt=""> </span>
         <span class="ax"></span>
@@ -223,31 +261,31 @@
     </div>
   -->
     <!-- -->
-    <div class="list_box clear a">
+    <div class="list_box clear ca ps cc kr en">
       <div class="ava_box">
         <span class="ava"><img src="i/tutor_ava_3.png" alt=""> </span>
         <span class="ax"></span>
       </div>
       <div class="txt_cont">
         <div class="nam_box">
-          <h2>Tutor C</h2>
-          <p>Bachelor of Science</p>
+          <h2>Soobin Lee</h2>
+          <p>Johns Hopkins University</p>
         </div>
         <div class="tis_box">
           <div class="txt">
-            <span>Mathematics tutor, physics +2</span>
+            <span>International Relations Major</span>
            <div class="txt_list">
-              <p>Chemistry</p>
-              <p>Chemistry</p>
+              <p>Global Social Change and Development</p>
             </div>
           </div>
         </div>
         <div class="det_txt">
-          Pay attention to the whole theoretical system. The system of number theory is very strong. At the same time, the basic theory includes the most basic methods of thinking.
+          Self-introduction here...
         </div>
       </div>
       <div class="price_box">
-        <p class="coin">$20-22/小时</p>
+        <!--<p class="coin">$20-22/小时</p>-->
+        <!--
         <div class="star">
           <img src="i/tutor_ic_3.png" alt="">
           <img src="i/tutor_ic_3.png" alt="">
@@ -256,36 +294,37 @@
           <img src="i/tutor_ic_3.png" alt="">
           <span>4 reviews</span>
         </div>
-        <p class="pj"><span>11</span>completed lessons</p>
+      -->
+        <!--<p class="pj"><span>11</span>completed lessons</p>-->
         <a href="#" class="btn">view profile</a>
       </div>
     </div>
     <!-- -->
-    <div class="list_box clear b">
+    <div class="list_box clear">
       <div class="ava_box">
         <span class="ava"><img src="i/tutor_ava_4.png" alt=""> </span>
         <span class="ax"></span>
       </div>
       <div class="txt_cont">
         <div class="nam_box">
-          <h2>Tutor D</h2>
-          <p>Bachelor of Science</p>
+          <h2>Test Subject</h2>
+          <p>University of xxx</p>
         </div>
         <div class="tis_box">
           <div class="txt">
-            <span>Mathematics tutor, physics +2</span>
+            <span>Major</span>
            <div class="txt_list">
-              <p>Chemistry</p>
-              <p>Chemistry</p>
+              <p>Minor</p>
+              <p>Focus</p>
             </div>
           </div>
         </div>
         <div class="det_txt">
-          Pay attention to the whole theoretical system. The system of number theory is very strong. At the same time, the basic theory includes the most basic methods of thinking.
+          Self-introduction here...
         </div>
       </div>
       <div class="price_box">
-        <p class="coin">$20-22/小时</p>
+        <!--<p class="coin">$20-22/小时</p>
         <div class="star">
           <img src="i/tutor_ic_3.png" alt="">
           <img src="i/tutor_ic_3.png" alt="">
@@ -294,7 +333,7 @@
           <img src="i/tutor_ic_3.png" alt="">
           <span>4 reviews</span>
         </div>
-        <p class="pj"><span>11</span>completed lessons</p>
+        <p class="pj"><span>11</span>completed lessons</p>-->
         <a href="#" class="btn">view profile</a>
       </div>
     </div>
