@@ -228,6 +228,10 @@ app.get('/logout', function(req, res, next){
   });
 });
 
+app.get('/form1', function(req, res, next){
+  res.sendFile('public/forms/SAGE-Handbook-2019-2020-draft-dated-August-19-2019.pdf');
+});
+
 app.use(express.static("public"));
 
 app.listen(8080);
