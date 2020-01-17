@@ -202,7 +202,7 @@ app.post('/login.html', function(req, res, next){
     });
     if(result===b.pwd){
       req.session.key=b.accid;
-      res.redirect('/userredirect');
+      res.render('user', {m_id: req.session.key});
     } else {
       res.redirect('/login.html')
     }
