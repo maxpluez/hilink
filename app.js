@@ -136,13 +136,13 @@ app.post('/register.html', function(req, res, next) {
   });
 
   //Format birthday into DATE type object
-  var bdaystring = ""+b.bdayyear+"-"+b.bdaymonth+"-"+b.bdayday;
+  var bdaystring = "'"+b.bdayyear+"-"+b.bdaymonth+"-"+b.bdayday+"'";
 
   request.addParameter('FirstName', TYPES.NVarChar, b.firstname);
   request.addParameter('LastName', TYPES.NVarChar, b.lastname);
   request.addParameter('AccountName', TYPES.NVarChar, b.accid);
   request.addParameter('Password', TYPES.NVarChar, b.pwd);
-  request.addParameter('Birthday', TYPES.Date, bdaystring);
+  //request.addParameter('Birthday', TYPES.Date, bdaystring);
   request.addParameter('School', TYPES.NVarChar, b.school);
   request.addParameter('Grade', TYPES.TinyInt, b.grade);
   request.addParameter('Email', TYPES.NVarChar, b.email);
@@ -177,7 +177,7 @@ app.post('/login.html', function(req, res, next){
   while(connection.state !== connection.STATE.LOGGED_IN){}
 
   // Read all rows from table
-  var reqstring = "SELECT Password FROM Users.Accounts WHERE AccountName='" + b.accid + "';"
+  var reqstring = "SELECT * FROM Users.Accounts WHERE AccountName='" + b.accid + "';"
   request = new Request(reqstring, function(err, rowCount, rows) {
     if (err) {
       console.log(err);
@@ -191,23 +191,53 @@ app.post('/login.html', function(req, res, next){
   });
 
   // Retrieve password & Print the rows read
-  var result = "";
+  var passwd = "";
+  var fn = "";
+      var ln = "";
+      /*
+      var bdayarr = [];
+      var bday;
+      var bmonth;
+      var byear;
+      */
+  var sch = "";
   request.on('row', function(columns) {
     columns.forEach(function(column) {
-      if (column.value === null) {
-        console.log('NULL');
-      } else {
-        result = column.value;
+      if(column.metadata.colName==='Password'){
+        passwd = column.value;
+      }
+      else if(column.metadata.colName==='FirstName'){
+        fn = column.value;
+      }
+      else if(column.metadata.colName==='LastName'){
+        ln = column.value;
+      }
+       /*
+       else if(column.metadata.colName==='Birthday'){
+         bdayarr = column.value.split("-");
+         byear=bdayarr[0];
+         bmonth=bdayarr[1];
+         bday=bdayarr[2];
+       }
+       */
+      else if(column.metadata.colName==='School'){
+        sch = column.value;
       }
     });
-    if(result===b.pwd){
+    if(passwd===b.pwd){
       req.session.key=b.accid;
-      res.render('user', {m_id: req.session.key});
+      fn = JSON.stringify(fn);
+      fn = fn.substring(1, fn.length-1);
+      ln = JSON.stringify(ln);
+      ln = ln.substring(1, ln.length-1);
+      sch = JSON.stringify(sch);
+      sch = sch.substring(1, sch.length-1);
+      while(!req.session.key){}
+      res.render('profile', {m_id: req.session.key, m_fn: fn, m_ln: ln, m_sch: sch});
     } else {
-      res.redirect('/login.html')
+      res.redirect('login.html');
     }
   });
-
   connection.execSql(request);
 });
 
@@ -215,7 +245,78 @@ app.get('/userredirect', function(req, res, next){
   if(!req.session.key){
     res.redirect('login.html');
   } else {
-    res.render('user', {m_id: req.session.key});
+    //Retrieving user profile from database
+    //Re-establish connection to db if not connected
+    if(connection.state !== connection.STATE.LOGGED_IN){
+      console.log("Previously disconnected. Now reconnecting...");
+      connection.close();
+      connection = new Connection(config);
+      connection.on('connect', function(err) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log('Connected');
+        }
+      });
+    }
+  
+    //proceed until connected
+    while(connection.state !== connection.STATE.LOGGED_IN){}
+  
+    // Read all rows from table
+    var reqstring = "SELECT * FROM Users.Accounts WHERE AccountName='" + req.session.key + "';"
+    request = new Request(reqstring, function(err, rowCount, rows) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(rowCount + ' row(s) returned');
+      }
+      if(rowCount == 0){
+        console.log("Account not found!")
+        res.redirect('login.html');
+      }
+    });
+  
+    // Retrieve password & Print the rows read
+    var fn = "";
+    var ln = "";
+    /*
+    var bdayarr = [];
+    var bday;
+    var bmonth;
+    var byear;
+    */
+    var sch = "";
+    request.on('row', function(columns) {
+      columns.forEach(function(column) {
+        if(column.metadata.colName==='FirstName'){
+          fn = column.value;
+        }
+        else if(column.metadata.colName==='LastName'){
+          ln = column.value;
+        }
+        /*
+        else if(column.metadata.colName==='Birthday'){
+          bdayarr = column.value.split("-");
+          byear=bdayarr[0];
+          bmonth=bdayarr[1];
+          bday=bdayarr[2];
+        }
+        */
+        else if(column.metadata.colName==='School'){
+          sch = column.value;
+        }
+      });
+      fn = JSON.stringify(fn);
+      fn = fn.substring(1, fn.length-1);
+      ln = JSON.stringify(ln);
+      ln = ln.substring(1, ln.length-1);
+      sch = JSON.stringify(sch);
+      sch = sch.substring(1, sch.length-1);
+      res.render('profile', {m_id: req.session.key, m_fn: fn, m_ln: ln, m_sch: sch});
+    });
+  
+    connection.execSql(request);
   }
 });
 
@@ -230,6 +331,10 @@ app.get('/logout', function(req, res, next){
 
 app.get('/form1', function(req, res, next){
   res.sendFile(__dirname + '/public/forms/SAGE-Handbook-2019-2020-draft-dated-August-19-2019.pdf');
+});
+
+app.get('/accountsetting', function(req, res, next){
+  res.render('accountsetting', {m_id: req.session.key});
 });
 
 app.use(express.static("public"));

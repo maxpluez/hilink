@@ -1,0 +1,81 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='keywords' content='your keywords')
+  meta(name='description' content='your description')
+  meta(name='author' content='author,email address')
+  meta(name='robots' content='index,follow')
+  meta(http-equiv='X-UA-Compatible' content='IE=Edge,chrome=1')
+  meta(name='renderer' content='webkit')
+  meta(name='force-rendering' content='webkit')
+  link(type='text/css' rel='stylesheet' href='css/swiper.min.css')
+  link(type='text/css' rel='stylesheet' href='css/animate.min.css')
+  link(type='text/css' rel='stylesheet' href='css/wSelect.css')
+  link(type='text/css' rel='stylesheet' href='css/app.css')
+  script(type='text/javascript' src='js/jquery-1.7.2.min.js')
+  script(type='text/javascript' src='js/swiper.min.js')
+  script(type='text/javascript' src='js/wow.js')
+  title Profile - HiLink
+-var id=m_id
+.user_center_tip
+  .cont_box
+    .nav_last_box
+      a.logo(href='index.html')
+        img(src='i/logo.png' alt='logo')
+      .navi_box
+        a(href='index.html') Home
+        a(href='competitionIMenu.html') Competition
+        a(href='programIntroduction.html') Program
+        a(href='tutor.html') Tutor
+        a(href='dowloadArea.html') Resources
+        a(href='/logout') Logout
+    .user_box
+      .user
+        span.ava
+          img(src='/i/user_c_1.png' alt='user icon')
+        | fdgd _25121
+      .exit
+        a(href='#')
+          img(src='/i/user_c_2.png' alt='')
+          | Out
+//
+.user_center_content_bg
+  .user_center_content_box
+    .nav_box
+      a(href='/userredirect') My  Profile
+      a.hover(href='/accountsetting') Account settings
+    .content_box
+      .tis_tle
+        span Account settings
+        a.edit(href='#') edit
+      .file_content_box
+        form(action='index.html' method='post')
+          .int_box
+            .tle
+              | Account Name
+            .int
+              input(type='text' name='' placeholder='Mailbox' value='#{id}')
+          .int_box
+            .tle
+              | Original Password
+            .int
+              input(type='text' name='' placeholder='password')
+          .int_box
+            .tle
+              | New Password
+            .int
+              input(type='text' name='' placeholder='password')
+          .int_box
+            .tle
+              | Re-type Password
+            .int
+              input(type='text' name='' placeholder='retype password')
+          input.sub_btn(type='submit' name='' value='save')
+//
+.footer_copy
+  | &copy;2003-2019  Hilink   add:  TEl&#xFF1A;023-2223 20202
+script(type='text/javascript' src='js/wSelect.min.js')
+script(type='text/javascript' src='js/dynamics.js')
+script(type='text/javascript' src='js/minigrid.js')
+script(type='text/javascript' src='js/app.js')
+script(type='text/javascript').
