@@ -1182,6 +1182,7 @@ table td,table th{
 .campsite_detail_tis .tis_tle{
 	padding: 0;
 	padding-top: 10px;
+	margin-left: 10px;
 }
 .campsite_detail_tis .tis_tle h2{
 	font-size:40px;
@@ -1229,9 +1230,9 @@ table td,table th{
 }
 .campsite_detail_txt{
 	padding-top: 40px;
-	margin-bottom: 40px;
+	margin-bottom: 20px;
 	min-height: 300px;
-	background: #fff;
+	background: #b3dbc0;
 }
 .campsite_detail_txt .txt{
 	float: left;
@@ -1240,21 +1241,44 @@ table td,table th{
 	padding-right: 26px;
 }
 .campsite_detail_txt .txt h2{
-	font-size:40px;
+	font-size:30px;
 	font-family: "Arial";
 	color:#222222;
 	font-weight: bold;
 	margin-bottom:20px;
 }
+
+.campsite_detail_txt .txt h3{
+	font-size:24px;
+	font-family: "Arial";
+	color:#222222;
+	font-weight: bold;
+}
+
 .campsite_detail_txt .txt p{
-	font-size:30px;
+	font-size:20px;
 	font-family: "Arial";
 	color:#222222;
 	line-height: 32px;
+	margin-bottom: 20px;
 }
+
+.campsite_detail_txt .txt ul{
+	font-weight: bold;
+	list-style-image: url('../i/tutor_ic_3.png');
+	font-size: 20px;
+	margin-left: 40px;
+	margin-bottom: 20px;
+}
+
+.campsite_detail_txt .txt li{
+	margin-bottom: 10px;
+}
+
 .campsite_detail_txt .img_box{
 	float: right;
 	width: calc(100% - 840px);
+	margin-bottom: 20px;
 }
 .campsite_detail_txt .img_box img{
 	display: block;
@@ -1265,7 +1289,9 @@ table td,table th{
 	position: relative;
 		border-radius:6px;
 		overflow: hidden;
+		width: 90%;
 }
+/*
 .campsite_detail_bitbtn::after{
 	content: "";
 	display: block;
@@ -1278,6 +1304,7 @@ table td,table th{
 	left:50%;
 	transform: translate(-50%,-50%);
 }
+*/
 .campsite_detail_bitbtn a{
 	display: block;
 	width: 100%;
@@ -2043,4 +2070,13 @@ table td,table th{
 }
 .content_box .case_cont .case_news .bit_btn:hover img{
 	margin-left:20px;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
