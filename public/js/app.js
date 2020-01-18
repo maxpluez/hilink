@@ -3,6 +3,7 @@ if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))){
 };
 $('.header_lang').wSelect();
 $('.header_lang').val('EN').change(); // should see in console
+//$('.header_opt').css('color','#b3dbc0');
 /* */
 /*$(function(){
 (function(){

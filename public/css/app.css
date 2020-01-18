@@ -75,23 +75,15 @@ table td,table th{
 	max-width: 1567px;
 	margin:0 auto;
 }
+/*
 .header_tip_box{
   height: 32px;
-	background: #b3dbc0;
+	background: #b3dbc0transparent;
+	color: #b3dbc0;
+	width: 15px;
 }
-.header_sele_box{
-	float: right;
-	height: 32px;
-	line-height: 32px;
-	color:#fff;
-	border:none;
-  background: transparent;
-}
-.header_tip_box .header_sele_box img{
-	display: inline-block;
-	width: 12px;
-	vertical-align: middle;
-}
+*/
+
 .index_search_box{
 	padding:12px 0;
 	background: #fff;
@@ -200,6 +192,26 @@ table td,table th{
 .index_search_box .menu_nav_box{
 
 }
+
+.index_search_box .header_sele_box{
+	float: left;
+	height: 32px;
+	line-height: 32px;
+	color: #b3dbc0;
+	border:none;
+  /*background: transparent;*/
+}
+
+.index_search_box .header_sele_box option{
+	color: #b3dbc0;
+}
+
+.header_sele_box img{
+	display: inline-block;
+	width: 12px;
+	vertical-align: middle;
+}
+
 .index_navi_cont{
 	width: 100%;
 }
@@ -214,7 +226,7 @@ table td,table th{
 	line-height: 56px;
 	text-align: center;
 	background: #fff;
-	border:1px solid #b3dbc0;
+	border:1px solid /*#b3dbc0*/white;
 	margin:0 1px;
 	position: relative;
 	z-index:11;
@@ -329,8 +341,7 @@ table td,table th{
 }
 /* */
 .index_case_1{
-	margin-top: 50px;
-	margin-bottom: 50px;
+	margin: 50px 3%;
 }
 .index_case_1 .w_tis_tle{
 	font-size:36px;
@@ -1970,4 +1981,66 @@ table td,table th{
 	color:#689777;
 	margin-top: 40px;
 	box-shadow: 0px 0px 9px rgba(179,219,129,0.75);
+}
+
+.content_box .case_cont .case_news .tle{
+	font-size:260px;
+	color:#73c1b4;
+	font-family: "Georgia";
+	line-height: 0px;
+	margin-top: 94px;
+}
+.content_box .case_cont .case_news .txt{
+	font-size: 20px;
+	margin-left:90px;
+	margin-top: -40px;
+}
+
+.content_box .case_cont .case_news .ava{
+	margin-left:10px;
+	width:600px;
+	font-size:18px;
+	color:#b3dbc0;
+	font-family: "Arial";
+	height: 48px;
+	line-height: 48px;
+	margin-bottom: 15px;
+}
+.content_box .case_cont .case_news .ava .i{
+	float: left;
+	display:block;
+	width: 48px;
+	height: 48px;
+	border:2px solid rgba(179,219,192,0.29);
+	overflow: hidden;
+	border-radius: 100%;
+	margin-right:10px;
+}
+.content_box .case_cont .case_news .ava .i img{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.content_box .case_cont .case_news .bit_btn{
+	width: 500px;
+	padding:12px 0;
+	border-top: 1px solid #73c1b4;
+	border-bottom: 1px solid #73c1b4;
+	margin-left: 10px;
+	font-size:36px;
+	font-weight: bold;
+	color:#73c1b4;
+	line-height: 40px;
+}
+.content_box .case_cont .case_news .bit_btn a{
+	color:#73c1b4;
+}
+.content_box .case_cont .case_news .bit_btn img{
+	display: inline-block;
+	vertical-align: middle;
+	margin-left:10px;
+	transition: all 0.5s;
+}
+.content_box .case_cont .case_news .bit_btn:hover img{
+	margin-left:20px;
 }
