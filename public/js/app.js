@@ -78,8 +78,8 @@ var competi_bit_box = new Swiper('.competi_bit_box', {
       }
 });
 /* */
-$(function(){
-(function(){
+
+window.onload = function(){
   /*
 function animate(item, x, y, index) {
  dynamics.animate(item, {
@@ -99,8 +99,7 @@ minigrid('.campsite_detail_item', '.item', 5, animate);
 window.addEventListener('resize', function(){
   minigrid('.campsite_detail_item', '.item', 5, animate);
 });
-})();
-})
+}
 /* */
 var fileInput = document.querySelector('#authen_file'),
     previewImg = document.querySelector('#authen_img');
