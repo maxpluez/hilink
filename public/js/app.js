@@ -94,12 +94,14 @@ function animate(item, x, y, index) {
   });
 }
 */
+
 minigrid('.campsite_detail_item', '.item', 5, animate);
 
 window.addEventListener('resize', function(){
   minigrid('.campsite_detail_item', '.item', 5, animate);
 });
 }
+
 /* */
 var fileInput = document.querySelector('#authen_file'),
     previewImg = document.querySelector('#authen_img');

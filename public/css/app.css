@@ -1109,23 +1109,159 @@ table td,table th{
 	opacity: 1;
 }
 /* */
+
+/*
 .campsite_content_box{
 	padding:50px 0;
-	width: 1567px;
+	width: 100%;
+	height: auto;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
 }
 .campsite_content_box .item{
-	position: absolute;
 	overflow: hidden;
 	margin-bottom: 7px;
 }
+
+.campsite_content_box .item1{
+	position: absolute;
+	grid-column-start: 1;
+	grid-column-end: 2;
+	grid-row-start: 1;
+	grid-row-end: 2;
+}
+
+.campsite_content_box .item2{
+	position: absolute;
+	grid-column-start: 2;
+	grid-column-end: 3;
+	grid-row-start: 1;
+	grid-row-end: 2;
+}
+
+.campsite_content_box .item3{
+position: absolute;
+	grid-column-start: 3;
+	grid-column-end: 4;
+	grid-row-start: 1;
+	grid-row-end: 2;
+}
+
+.campsite_content_box .item4{
+	position: absolute;
+	grid-column-start: 4;
+	grid-column-end: 5;
+	grid-row-start: 1;
+	grid-row-end: 2;
+}
+
+.campsite_content_box .item5{
+	position: absolute;
+	grid-column-start: 1;
+	grid-column-end: 2;
+	grid-row-start: 2;
+	grid-row-end: 3;
+}
+
+.campsite_content_box .item6{
+	position: absolute;
+	grid-column-start: 2;
+	grid-column-end: 3;
+	grid-row-start: 2;
+	grid-row-end: 3;
+}
+
+.campsite_content_box .item7{
+	position: absolute;
+	grid-column-start: 3;
+	grid-column-end: 4;
+	grid-row-start: 2;
+	grid-row-end: 3;
+}
+
+.campsite_content_box .item8{
+	position: absolute;
+	grid-column-start: 4;
+	grid-column-end: 5;
+	grid-row-start: 2;
+	grid-row-end: 3;
+}
+
+.campsite_content_box .item9{
+	position: absolute;
+	grid-column-start: 1;
+	grid-column-end: 2;
+	grid-row-start: 3;
+	grid-row-end: 4;
+}
+
+.campsite_content_box .item10{
+	position: absolute;
+	grid-column-start: 2;
+	grid-column-end: 3;
+	grid-row-start: 3;
+	grid-row-end: 4;
+}
+
+.campsite_content_box .item11{
+	position: absolute;
+	grid-column-start: 3;
+	grid-column-end: 4;
+	grid-row-start: 3;
+	grid-row-end: 4;
+}
+
+.campsite_content_box .item12{
+	position: absolute;
+	grid-column-start: 4;
+	grid-column-end: 5;
+	grid-row-start: 3;
+	grid-row-end: 4;
+}
+
+.campsite_content_box .item13{
+	position: absolute;
+	grid-column-start: 1;
+	grid-column-end: 2;
+	grid-row-start: 4;
+	grid-row-end: 5;
+}
+
+.campsite_content_box .item14{
+	position: absolute;
+	grid-column-start: 2;
+	grid-column-end: 3;
+	grid-row-start: 4;
+	grid-row-end: 5;
+}
+
+.campsite_content_box .item15{
+	position: absolute;
+	grid-column-start: 3;
+	grid-column-end: 4;
+	grid-row-start: 4;
+	grid-row-end: 5;
+}
+
+.campsite_content_box .item16{
+	position: absolute;
+	grid-column-start: 4;
+	grid-column-end: 5;
+	grid-row-start: 4;
+	grid-row-end: 5;
+}
+*/
 .campsite_content_box .item img{
 	display: block;
-	height: 100%;
+	width: 100%;
+	max-width: 100%;
+	height: auto;
 }
 .campsite_content_box .item p{
-	position: absolute;
+	/*position: absolute;
 	bottom:10px;
-	left:0;
+	left:0;*/
 	width: 100%;
 	font-size:46px;
 	color:#f8f8f8;
@@ -1134,12 +1270,12 @@ table td,table th{
 	transition: all 0.5s;
 }
 .campsite_content_box .item .arr{
-	position: absolute;
+	/*position: absolute;
 	right: 40px;
 	top: 19px;
 	display: block;
 	width: 30px;
-	height: 30px;
+	height: 30px;*/
 	background: url(../i/adver_arr.png) no-repeat center;
 	background-size:cover;
 	opacity: 0;
@@ -1147,10 +1283,10 @@ table td,table th{
 	transition: all 0.5s;
 }
 .campsite_content_box .item .bg{
-	position: absolute;
+	/*position: absolute;
 	top: 50%;
 	left:50%;
-	transform: translate(-50%,-50%);
+	transform: translate(-50%,-50%);*/
 	width: 0;
 	height: 0;
 	opacity: 0;
@@ -1160,7 +1296,7 @@ table td,table th{
 }
 .campsite_content_box .item.hover .arr{
 	opacity: 1;
-	right: 25px;
+	/*right: 25px;*/
 }
 .campsite_content_box .item.hover .bg{
 	width:100%;
@@ -1175,7 +1311,7 @@ table td,table th{
 .campsite_detail_tis{
 	position: relative;
 	background: #fff;
-	min-height: 963px;
+	/*min-height: 963px;*/
 	margin-bottom: 40px;
 	box-shadow: 0px 0px 8px rgba(0,0,0,0.04);
 }
@@ -1218,15 +1354,60 @@ table td,table th{
 	margin-left:32px;
 }
 .campsite_detail_tis .campsite_detail_item{
-	margin-top: 30px;
+	display: grid;
+	grid-template-columns: 67% 33%;
+  grid-template-rows: 50% 50%;
 }
+
+.campsite_detail_tis .campsite_detail_item .large{
+	grid-column-start: 1;
+	grid-column-end: 2;
+	grid-row-start: 1;
+	grid-row-end: 3;
+}
+
+.campsite_detail_tis .campsite_detail_item .large img{
+	max-width: 100%;
+	height: auto;
+}
+
+.campsite_detail_tis .campsite_detail_item .small1{
+	grid-column-start: 2;
+	grid-column-end: 3;
+	grid-row-start: 1;
+	grid-row-end: 2;
+}
+
+.campsite_detail_tis .campsite_detail_item .small2{
+	grid-column-start: 2;
+	grid-column-end: 3;
+	grid-row-start: 2;
+	grid-row-end: 3;
+}
+
+.campsite_detail_tis .campsite_detail_item .small1 img{
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.campsite_detail_tis .campsite_detail_item .small2 img{
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
 .campsite_detail_tis .campsite_detail_item .item{
-	position: absolute;
-	width: 370px;
+	position: relative;
+	width: 100%;
+	height: auto;
+	max-height: 50%;
 }
 .campsite_detail_tis .campsite_detail_item .item img{
 	display: block;
 	width: 100%;
+	height: auto;
+	max-height: 50%;
 }
 .campsite_detail_txt{
 	padding-top: 40px;
