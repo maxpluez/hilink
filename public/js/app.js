@@ -80,6 +80,7 @@ var competi_bit_box = new Swiper('.competi_bit_box', {
 /* */
 $(function(){
 (function(){
+  /*
 function animate(item, x, y, index) {
  dynamics.animate(item, {
    translateX: x,
@@ -92,7 +93,7 @@ function animate(item, x, y, index) {
     delay: 100 + index * 30
   });
 }
-
+*/
 minigrid('.campsite_detail_item', '.item', 5, animate);
 
 window.addEventListener('resize', function(){
