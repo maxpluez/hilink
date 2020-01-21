@@ -1110,7 +1110,7 @@ table td,table th{
 }
 /* */
 
-/*
+
 .campsite_content_box{
 	padding:50px 0;
 	width: 100%;
@@ -1125,7 +1125,6 @@ table td,table th{
 }
 
 .campsite_content_box .item1{
-	position: absolute;
 	grid-column-start: 1;
 	grid-column-end: 2;
 	grid-row-start: 1;
@@ -1133,7 +1132,6 @@ table td,table th{
 }
 
 .campsite_content_box .item2{
-	position: absolute;
 	grid-column-start: 2;
 	grid-column-end: 3;
 	grid-row-start: 1;
@@ -1141,7 +1139,6 @@ table td,table th{
 }
 
 .campsite_content_box .item3{
-position: absolute;
 	grid-column-start: 3;
 	grid-column-end: 4;
 	grid-row-start: 1;
@@ -1149,7 +1146,6 @@ position: absolute;
 }
 
 .campsite_content_box .item4{
-	position: absolute;
 	grid-column-start: 4;
 	grid-column-end: 5;
 	grid-row-start: 1;
@@ -1157,7 +1153,6 @@ position: absolute;
 }
 
 .campsite_content_box .item5{
-	position: absolute;
 	grid-column-start: 1;
 	grid-column-end: 2;
 	grid-row-start: 2;
@@ -1165,7 +1160,6 @@ position: absolute;
 }
 
 .campsite_content_box .item6{
-	position: absolute;
 	grid-column-start: 2;
 	grid-column-end: 3;
 	grid-row-start: 2;
@@ -1173,7 +1167,6 @@ position: absolute;
 }
 
 .campsite_content_box .item7{
-	position: absolute;
 	grid-column-start: 3;
 	grid-column-end: 4;
 	grid-row-start: 2;
@@ -1181,7 +1174,6 @@ position: absolute;
 }
 
 .campsite_content_box .item8{
-	position: absolute;
 	grid-column-start: 4;
 	grid-column-end: 5;
 	grid-row-start: 2;
@@ -1189,7 +1181,6 @@ position: absolute;
 }
 
 .campsite_content_box .item9{
-	position: absolute;
 	grid-column-start: 1;
 	grid-column-end: 2;
 	grid-row-start: 3;
@@ -1197,7 +1188,6 @@ position: absolute;
 }
 
 .campsite_content_box .item10{
-	position: absolute;
 	grid-column-start: 2;
 	grid-column-end: 3;
 	grid-row-start: 3;
@@ -1205,7 +1195,6 @@ position: absolute;
 }
 
 .campsite_content_box .item11{
-	position: absolute;
 	grid-column-start: 3;
 	grid-column-end: 4;
 	grid-row-start: 3;
@@ -1213,7 +1202,6 @@ position: absolute;
 }
 
 .campsite_content_box .item12{
-	position: absolute;
 	grid-column-start: 4;
 	grid-column-end: 5;
 	grid-row-start: 3;
@@ -1221,7 +1209,6 @@ position: absolute;
 }
 
 .campsite_content_box .item13{
-	position: absolute;
 	grid-column-start: 1;
 	grid-column-end: 2;
 	grid-row-start: 4;
@@ -1229,7 +1216,6 @@ position: absolute;
 }
 
 .campsite_content_box .item14{
-	position: absolute;
 	grid-column-start: 2;
 	grid-column-end: 3;
 	grid-row-start: 4;
@@ -1237,7 +1223,6 @@ position: absolute;
 }
 
 .campsite_content_box .item15{
-	position: absolute;
 	grid-column-start: 3;
 	grid-column-end: 4;
 	grid-row-start: 4;
@@ -1245,13 +1230,12 @@ position: absolute;
 }
 
 .campsite_content_box .item16{
-	position: absolute;
 	grid-column-start: 4;
 	grid-column-end: 5;
 	grid-row-start: 4;
 	grid-row-end: 5;
 }
-*/
+
 .campsite_content_box .item img{
 	display: block;
 	width: 100%;
@@ -1259,9 +1243,9 @@ position: absolute;
 	height: auto;
 }
 .campsite_content_box .item p{
-	/*position: absolute;
+	position: absolute;
 	bottom:10px;
-	left:0;*/
+	left:0;
 	width: 100%;
 	font-size:46px;
 	color:#f8f8f8;
@@ -1270,12 +1254,12 @@ position: absolute;
 	transition: all 0.5s;
 }
 .campsite_content_box .item .arr{
-	/*position: absolute;
+	position: absolute;
 	right: 40px;
 	top: 19px;
 	display: block;
 	width: 30px;
-	height: 30px;*/
+	height: 30px;
 	background: url(../i/adver_arr.png) no-repeat center;
 	background-size:cover;
 	opacity: 0;
@@ -1283,10 +1267,10 @@ position: absolute;
 	transition: all 0.5s;
 }
 .campsite_content_box .item .bg{
-	/*position: absolute;
+	position: absolute;
 	top: 50%;
 	left:50%;
-	transform: translate(-50%,-50%);*/
+	transform: translate(-50%,-50%);
 	width: 0;
 	height: 0;
 	opacity: 0;
@@ -1296,7 +1280,7 @@ position: absolute;
 }
 .campsite_content_box .item.hover .arr{
 	opacity: 1;
-	/*right: 25px;*/
+	right: 25px;
 }
 .campsite_content_box .item.hover .bg{
 	width:100%;

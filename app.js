@@ -13,7 +13,7 @@ var Request = require('tedious').Request;
 var TYPES = require('tedious').TYPES;
 
 // Create connection to database
-/*
+
 var config = {
   server: 'hilinkdb01.database.windows.net',
   authentication: {
@@ -28,8 +28,8 @@ var config = {
       encrypt: true
   }
 }
-*/
 
+/*
 var config = {
   server: 'localhost',
   authentication: {
@@ -43,7 +43,7 @@ var config = {
       database: 'Users'
   }
 }
-
+*/
 var connection = new Connection(config);
 
 // Attempt to connect and execute queries if connection goes through
@@ -73,7 +73,7 @@ app.use(bodyParser.urlencoded({
 app.use(session({
   secret: 'hilink',
   store: new TediousStore({
-    
+    /*
     config: {
       userName: 'sa',
       password: 'HiLink101',
@@ -82,8 +82,8 @@ app.use(session({
         database: 'Users'
       }
     }
+    */
     
-    /*
     config: {
       userName: 'admin-hilink',
       password: 'W3lcome2HL',
@@ -93,7 +93,7 @@ app.use(session({
         encrypt: true
       }
     }
-    */
+    
     , tableName: 'Users.Sessions'
   }),
   saveUninitialized: false,
